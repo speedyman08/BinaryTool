@@ -1,5 +1,7 @@
 package com.speedyman77
 
+import com.speedyman77.exceptions.BinaryLengthException
+
 fun main() {
     val userInput = readln() // TODO: change the user's input method to be a CLI argument
     val individualChars = userInput.split(" ") // [010101, 101010]

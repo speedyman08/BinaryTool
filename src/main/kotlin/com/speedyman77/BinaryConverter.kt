@@ -1,5 +1,6 @@
 package com.speedyman77
 
+import com.speedyman77.exceptions.BinaryLengthException
 import kotlin.math.pow
 
 object BinaryConverter {
@@ -24,5 +25,5 @@ object BinaryConverter {
     }
 }
 
-class BinaryLengthException(message: String) : Exception(message)
+
 
