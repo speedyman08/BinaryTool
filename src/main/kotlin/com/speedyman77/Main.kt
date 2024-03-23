@@ -10,7 +10,7 @@ fun main() {
             builder.append(BinaryConverter.binaryToASCII(it))
         } catch(e: BinaryLengthException) {
             builder.append("*")
-            // If the binary number's length is not 8 just replace it with an asterisk as it is unknown
+            // If the binary number's length is not 8 just replace it with an asterisk as it is invalid
         }
     }
 

@@ -20,8 +20,7 @@ object BinaryConverter {
     }
 
     fun binaryToASCII(binary: String): Char {
-        val binaryAsInt = binaryToInt(binary)
-        return binaryAsInt.toChar()
+        return binaryToInt(binary).toChar()
     }
 }
 
