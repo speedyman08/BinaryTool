@@ -16,8 +16,8 @@ fun main(args: Array<String>) {
         exitProcess(1)
     }
 
+    // by default the program converts binary to ascii
     if ((!params.containsKey("toBinary") && !params.containsKey("toAscii")) || params.containsKey("toAscii")) {
-        // by default the program converts binary to ascii
         val userInput = params["data"]
         val builder = StringBuilder()
 
@@ -26,7 +26,7 @@ fun main(args: Array<String>) {
                 builder.append(BinaryConverter.binaryToASCII(it))
             } catch (e: BinaryLengthException) {
                 builder.append("*")
-                // If the binary number's length is not 8 just replace it with an asterisk as it is invalid
+                // If the binary number's length is not 8 just replace it with an asterisk as it is considered invalid
             }
         }
         println(builder.toString())

@@ -3,19 +3,21 @@ package com.speedyman77
 
 /**
  * Custom implementation of a command line parser
- * @constructor Takes an array of accepted CLI arguments
+ * @constructor Takes an array of CLI arguments
  * @property specifiedOptions Array of strings that represent accepted arguments
+ * @property optionValues Array of strings that represent arguments that do not need to have an associated value
  * @throws IllegalArgumentException if a __required__ argument does not have an associated value
+ * @throws IllegalArgumentException if a required argument is not set
  */
 class CommandLineParser(requiredArgs: Array<String>, optionArgs: Array<String>) {
     private var specifiedOptions: MutableList<String> = mutableListOf()
-    private var optionalValues: MutableList<String> = mutableListOf()
+    private var optionValues: MutableList<String> = mutableListOf()
     init {
         requiredArgs.forEach {
             specifiedOptions.add(it)
         }
         optionArgs.forEach {
-            optionalValues.add(it)
+            optionValues.add(it)
         }
     }
     fun parseCommandLine(args: Array<String>): Map<String, String> {
@@ -31,7 +33,7 @@ class CommandLineParser(requiredArgs: Array<String>, optionArgs: Array<String>) 
             if (arg.startsWith("-")) {
                 val option = arg.substring(1)
 
-                if (specifiedOptions.contains(option) || optionalValues.contains(option)) {
+                if (specifiedOptions.contains(option) || optionValues.contains(option)) {
                     if (index + 1 < args.size && !args[index + 1].startsWith("-")) {
                         optionsMap[option] = args[index + 1]
                         consumedNext = true
