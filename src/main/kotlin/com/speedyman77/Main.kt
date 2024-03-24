@@ -3,7 +3,10 @@ package com.speedyman77
 import com.speedyman77.exceptions.BinaryLengthException
 
 fun main(args: Array<String>) {
-    val parser = CommandLineParser(arrayOf("path"))
+    val parser = CommandLineParser(
+        requiredArgs = arrayOf("data"),
+        optionalArgs = arrayOf("toBinary", "toAscii")
+    )
     val params = parser.parseCommandLine(args)
 
     println("DEBUG: Application Arguments:")
