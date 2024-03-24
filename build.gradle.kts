@@ -29,6 +29,6 @@ kotlin {
 
 ktor {
     fatJar {
-        archiveFileName.set("BinaryTool.jar")
+        archiveFileName = "BinaryTool.jar"
     }
 }

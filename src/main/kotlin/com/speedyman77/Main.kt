@@ -8,7 +8,9 @@ fun main(args: Array<String>) {
         requiredArgs = arrayOf("data"),
         optionArgs = arrayOf("toBinary", "toAscii", "help")
     )
+
     val params: Map<String, String>
+
     try {
         params = parser.parseCommandLine(args)
     } catch(e: IllegalArgumentException) {

@@ -6,3 +6,9 @@ A tool that is able to convert binary to ascii text and back
 - If you have any suggestions that can improve the code, please open an issue as that would really help me become a better <br> programmer
 
 I'll look into making this a native application since Kotlin supports LLVM
+
+## Usage
+```shell
+java -jar BinaryTool.jar (-toBinary|-toAscii) -data "stuff"
+```
+The data argument is required, the tool will not work without it.
