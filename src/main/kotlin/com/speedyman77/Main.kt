@@ -1,31 +1,38 @@
 package com.speedyman77
 
 import com.speedyman77.exceptions.BinaryLengthException
+import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
     val parser = CommandLineParser(
         requiredArgs = arrayOf("data"),
-        optionalArgs = arrayOf("toBinary", "toAscii")
+        optionArgs = arrayOf("toBinary", "toAscii", "help")
     )
-    val params = parser.parseCommandLine(args)
-
-    println("DEBUG: Application Arguments:")
-    params.forEach { (key, value) ->
-        println("$key: $value")
+    val params: Map<String, String>
+    try {
+        params = parser.parseCommandLine(args)
+    } catch(e: IllegalArgumentException) {
+        println("\"data\" is a required argument, and it must have a value: ${e.message}")
+        exitProcess(1)
     }
 
-    val userInput = readln() // TODO: change the user's input method to be a CLI argument
-    val individualChars = userInput.split(" ") // [010101, 101010]
-    val builder = StringBuilder()
+    if ((!params.containsKey("toBinary") && !params.containsKey("toAscii")) || params.containsKey("toAscii")) {
+        // by default the program converts binary to ascii
+        val userInput = params["data"]
+        val builder = StringBuilder()
 
-    individualChars.forEach {
-        try {
-            builder.append(BinaryConverter.binaryToASCII(it))
-        } catch(e: BinaryLengthException) {
-            builder.append("*")
-            // If the binary number's length is not 8 just replace it with an asterisk as it is invalid
+        userInput?.split(" ")?.forEach {
+            try {
+                builder.append(BinaryConverter.binaryToASCII(it))
+            } catch (e: BinaryLengthException) {
+                builder.append("*")
+                // If the binary number's length is not 8 just replace it with an asterisk as it is invalid
+            }
         }
+        println(builder.toString())
+    } else {
+        // TODO: Implement Binary to ASCII logic
+        println("Binary to ASCII not implemented yet")
     }
 
-    println(builder.toString())
 }

@@ -7,14 +7,14 @@ package com.speedyman77
  * @property specifiedOptions Array of strings that represent accepted arguments
  * @throws IllegalArgumentException if a __required__ argument does not have an associated value
  */
-class CommandLineParser(requiredArgs: Array<String>, optionalArgs: Array<String>) {
+class CommandLineParser(requiredArgs: Array<String>, optionArgs: Array<String>) {
     private var specifiedOptions: MutableList<String> = mutableListOf()
     private var optionalValues: MutableList<String> = mutableListOf()
     init {
         requiredArgs.forEach {
             specifiedOptions.add(it)
         }
-        optionalArgs.forEach {
+        optionArgs.forEach {
             optionalValues.add(it)
         }
     }
@@ -36,8 +36,10 @@ class CommandLineParser(requiredArgs: Array<String>, optionalArgs: Array<String>
                         optionsMap[option] = args[index + 1]
                         consumedNext = true
                     } else if (specifiedOptions.contains(option)) {
+                        // in the case that a value is required
                         throw IllegalArgumentException("No value provided for required arg $option")
                     } else {
+                        // in the case that the argument is an option
                         optionsMap[option] = ""
                     }
                 }
