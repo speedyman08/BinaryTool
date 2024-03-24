@@ -2,7 +2,15 @@ package com.speedyman77
 
 import com.speedyman77.exceptions.BinaryLengthException
 
-fun main() {
+fun main(args: Array<String>) {
+    val parser = CommandLineParser(arrayOf("path"))
+    val params = parser.parseCommandLine(args)
+
+    println("DEBUG: Application Arguments:")
+    params.forEach { (key, value) ->
+        println("$key: $value")
+    }
+
     val userInput = readln() // TODO: change the user's input method to be a CLI argument
     val individualChars = userInput.split(" ") // [010101, 101010]
     val builder = StringBuilder()

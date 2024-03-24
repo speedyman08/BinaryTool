@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "1.9.23"
+    id("io.ktor.plugin") version "2.3.9"
     application
 }
 application {
@@ -24,4 +25,10 @@ tasks.test {
 }
 kotlin {
     jvmToolchain(20)
+}
+
+ktor {
+    fatJar {
+        archiveFileName.set("BinaryTool.jar")
+    }
 }
