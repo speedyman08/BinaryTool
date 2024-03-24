@@ -21,4 +21,10 @@ class BinaryConverterTest {
         }
         assertEquals("Binary number must be 8 bits long", exception.message)
     }
+    @Test
+    fun asciiConversion() {
+        val expected = "01001000 01100101 01101100 01101100 01101111 00100000 01010111 01101111 01110010 01101100 01100100 "
+        val actual = BinaryConverter.asciiToBinary("Hello World")
+        assertEquals(expected, actual)
+    }
 }

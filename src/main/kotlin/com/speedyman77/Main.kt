@@ -12,7 +12,7 @@ fun main(args: Array<String>) {
     try {
         params = parser.parseCommandLine(args)
     } catch(e: IllegalArgumentException) {
-        println("\"data\" is a required argument, and it must have a value: ${e.message}")
+        println("\"data\" is a required argument, and it must have a value.\nException: ${e.message}")
         exitProcess(1)
     }
 
