@@ -20,8 +20,28 @@ object BinaryConverter {
         return converted.toInt()
     }
 
-    fun binaryToASCII(binary: String): Char {
+    fun binaryToAscii(binary: String): Char {
         return binaryToInt(binary).toChar()
+    }
+
+    fun asciiToBinary(ascii: String): String {
+        val binaryBuilder = StringBuilder()
+        ascii.forEach {
+            var binary = ""
+            var code = it.code
+
+            for (i in 7 downTo 0) {
+                if (code - 2.0.pow(i) >= 0) {
+                    binary += "1"
+                    code -= 2.0.pow(i).toInt()
+                } else {
+                    binary += "0"
+                    continue
+                }
+            }
+            binaryBuilder.append("$binary ")
+        }
+        return binaryBuilder.toString()
     }
 }
 
